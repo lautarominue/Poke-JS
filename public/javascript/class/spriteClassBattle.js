@@ -20,10 +20,6 @@ class Sprite {
         )
     }
 
-    drawPokeball(typePokeball) {
-        
-    }
-
     moveAtack(atack) {
         if (atack == 'player') {
             this.position.x -= 6

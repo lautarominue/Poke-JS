@@ -6,7 +6,7 @@ import { urlFaceset } from "../../utils/index.js"
  * Print a new Dialog
  * @param {object} data {faceset,chat}  
  */
-const printDialogDefault = ({faceset,chat}) => {
+const printDialogTutorial = ({faceset,chat}) => {
     const screenDialog = document.getElementById('dialog')
     const screenChat = document.getElementById('dialogChat')
     const screenDialogFaceset = document.getElementById('dialogFaceset')
@@ -16,7 +16,6 @@ const printDialogDefault = ({faceset,chat}) => {
     screenDialog.style.display = 'block'
     screenChat.style.display = 'block'
     screenDialogFaceset.style.display = 'block'
-    changeStateInteraction(true)
 }
 
-export { printDialogDefault }
+export { printDialogTutorial }

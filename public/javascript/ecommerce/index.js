@@ -1,5 +1,4 @@
 export { printDetailsItem } from "./printDetailsItems.js";
-export { printShop } from "./printShop.js";
 export { stateEcommerce, changeStateEcommerce } from "./stateEcommerce.js"
 export { buttonsEcommerce } from "./buttons.js"
 export { printItems } from "./printItems.js"

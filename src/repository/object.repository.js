@@ -17,7 +17,6 @@ class Repo {
 
     async getById(code) {
         const object = await this.#dao.getById(code)
-        console.log('repositorio',object)
         return  new AdaptadorObjects(new ObjectModel(object)).devolver()
     }
 

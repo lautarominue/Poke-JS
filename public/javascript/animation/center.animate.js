@@ -4,16 +4,21 @@ import { keys, lastKey } from "../keys/keys.js"
 import { changeAnimation } from "./changeAnimation.js"
 import { createBackground, createBoundaries, createMovables, createForeground, offset } from "../map/index.js"
 import { collisionCenter } from "../coordinates/index.js"
+import { interactionAdmin } from "../interaction/index.js"
 import { stateInteraction } from "../interaction/stateInteraction.js"
 import { removeInteraction } from "../interaction/removeInteraction.js"
-import { BATTLEZONE, DOOR, NPC, OBJECT, WALL } from "../map/index.js"
+import { DOOR, NPC, WALL } from "../map/index.js"
+import { c } from "../canvas/canvas.js"
 // Ubicacion de Mapas
 const center = 'pokemonCenter/center'
 const centerForeground = 'pokemonCenter/centerForeground'
 const boundaryX = 30
 const boundaryY = 30
 const position = { x: -700, y: 600 }
+const chatWelcome = 'Aqui podras curar tus pokemones. Recuerda presiona "E" para comezar el dialogo y "SPACE" para interactuar.'
+const timeout = 5000
 
+let visit = true
 let foregroundCenter = createForeground(centerForeground)
 let backgroundCenter = createBackground(center)
 let boundariesTow = createBoundaries(collisionCenter, boundaryX, boundaryY)
@@ -25,10 +30,21 @@ movables.forEach((movable) => {
     movable.position.x += position.y
 })
 
+
+
 let animate = () => {
     const animationId = window.requestAnimationFrame(animate)
     backgroundCenter.draw()
     player.draw()
+
+    if (!visit) {
+        visit = true
+        interactionAdmin(chatWelcome)
+        setTimeout(() => {
+            removeInteraction()
+        }, timeout);
+    }
+
     // foregroundCenter.draw()
     //dibujar el perimetro
 
@@ -58,6 +74,7 @@ let animate = () => {
                     }
                 }
             })) {
+                // console.log(boundary.symbol)
                 if (boundary.symbol > DOOR.start && boundary.symbol <= DOOR.final) {
                     window.cancelAnimationFrame(animationId)
                     changeAnimation(boundary.symbol)

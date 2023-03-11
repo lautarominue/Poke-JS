@@ -1,7 +1,8 @@
-import { printShop } from "../ecommerce/printShop.js";
-import { npcDetected } from "../function/index.js";
+import { printDialogDefault } from "../dialog/index.js";
+import { changeNpcDetected, npcDetected,cureTeam } from "../function/index.js";
 import { interactionNpc } from "../interaction/index.js";
-import { stateInteraction } from "../interaction/stateInteraction.js";
+import { changeStateInteraction, stateInteraction } from "../interaction/stateInteraction.js";
+import { closeInventory, openInventory, stateOpenInventory } from "../invertory/index.js"
 
 // Teclas a utilizar
 const keys = {
@@ -34,6 +35,7 @@ window.addEventListener('keydown', (e) => {
         case 'a': keys.a.pressed = true; lastKey = 'a'; break
         case 'd': keys.d.pressed = true; lastKey = 'd'; break
         case 'e': keys.e.pressed = true; lastKey = 'e'; break
+        // case 'i': keys.i.pressed = true; lastKey = 'i'; break
     }
 })
 window.addEventListener('keyup', (e) => {
@@ -42,21 +44,38 @@ window.addEventListener('keyup', (e) => {
         case 's': keys.s.pressed = false; break
         case 'a': keys.a.pressed = false; break
         case 'd': keys.d.pressed = false; break
-        case 'e': 
-            stateInteraction && npcDetected.id == 321 ?  printShop('armory') : '' 
-            stateInteraction && npcDetected.id == 3212 ?  printShop('posionShop') : '' 
-        break
-        case ' ': 
-            npcDetected.state ?  interactionNpc() : ''
-        break
+        case 'e': initE(); break;
+        case ' ': initSpace(); break;
         case 'i': activeInventory(); break
         case 'o': activeInventory2(); break
         case 'p': activeInventory3(); break
         case 'j': activeInventory4(); break
     }
 })
-const activeInventory = () => console.log('active inventory') 
-const activeInventory2 = () => console.log('asd') 
+const activeInventory = () => {
+    if (stateOpenInventory) {
+        closeInventory()
+    } else {
+        openInventory()
+    }
+}
+
+const initE = () => {
+    if (npcDetected.state) {
+        interactionNpc()
+    }
+}
+
+const initSpace = () => {
+    if (npcDetected.state) {
+        npcDetected.id == 392 ? cureTeam() : ''
+    }
+}
+
+
+
+
+const activeInventory2 = () => console.log('asd')
 const activeInventory3 = () => {
 }
 const activeInventory4 = () => {
@@ -64,4 +83,4 @@ const activeInventory4 = () => {
 
 
 
-export {keys,lastKey}
+export { keys, lastKey }

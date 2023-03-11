@@ -33,5 +33,11 @@ const initHealtBar = (lifeBar, lifePoint) => {
     })
 }
 
-export { healthBar, initHealtBar }
+const healthBarAnimationNone = (lifeBar, lifePoint) => {
+    let { points, colorLife } = color(lifePoint)
+    let contentBoxShadow = `inset ${points}px 0 0 0 ${colorLife}`
+    lifeBar.style.boxShadow = contentBoxShadow
+}
+
+export { healthBar, initHealtBar,healthBarAnimationNone }
 

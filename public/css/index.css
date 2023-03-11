@@ -268,6 +268,85 @@ body {
 .user span {
   color: green !important; }
 
+.inventory {
+  position: absolute;
+  width: 1280px;
+  height: 720px;
+  background-color: rgba(67, 69, 92, 0.459);
+  display: none; }
+  .inventory__back {
+    position: absolute;
+    right: 10%;
+    bottom: 10%; }
+    .inventory__back span {
+      padding: 1rem;
+      border-radius: 40%;
+      background-color: rgba(212, 212, 212, 0.767);
+      z-index: 100;
+      font-size: 1.3rem;
+      cursor: pointer; }
+  .inventory__active {
+    border-right: solid 5px black;
+    width: 40%;
+    display: flex;
+    justify-content: center; }
+    .inventory__active__container {
+      margin: 3rem;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      background-color: rgba(212, 212, 212, 0.767);
+      padding: 1rem 0;
+      border-radius: 5%; }
+      .inventory__active__container__health {
+        display: flex;
+        align-items: center;
+        padding: 1rem; }
+        .inventory__active__container__health__bar {
+          width: 400px;
+          height: 8px;
+          border: 2px solid #000;
+          border-radius: 4px;
+          box-shadow: inset 400px 0 0 0 green; }
+      .inventory__active__container__img {
+        background-color: black;
+        border-radius: 50%;
+        border: solid white 4px; }
+        .inventory__active__container__img img {
+          width: 300px; }
+      .inventory__active__container span {
+        font-size: 1.7rem; }
+  .inventory__container {
+    width: 60%; }
+    .inventory__container__slots {
+      margin: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      gap: 20px; }
+      .inventory__container__slots__ind {
+        cursor: pointer;
+        padding: 8px;
+        display: flex;
+        border-radius: 10%;
+        background-color: rgba(212, 212, 212, 0.767);
+        justify-content: space-around; }
+        .inventory__container__slots__ind__left {
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+          .inventory__container__slots__ind__left__img {
+            background-color: rgba(0, 0, 0, 0.87);
+            border-radius: 50%;
+            border: solid white 4px; }
+            .inventory__container__slots__ind__left__img img {
+              margin-bottom: 20px;
+              width: 80px; }
+
+.inventory__active__container__rigth {
+  display: flex;
+  flex-direction: column; }
+
 .battleContainer {
   position: absolute;
   width: 1280px;

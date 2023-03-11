@@ -4,3 +4,5 @@ export { rectangularCollision } from "./rectangularCollision.js";
 export { transitionBlackOut } from "./transitionBlackOut.js"
 export { createSprite } from "./createSprite.js"
 export { createPokemon } from "./createPokemon.js"
+export { cureTeam } from "./cureTeam.js"
+export { addPokemon } from "./addPokemon.js"

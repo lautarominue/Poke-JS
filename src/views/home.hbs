@@ -140,8 +140,8 @@
         <div id="btn-skip">Skip</div>
       </div>
       <div class="battleContainer__pokeball" id="pokeballBatlleContainer">
-        <div class="battleContainer__pokeball__capture" id="pokeballBatlle" >
-          <img src="img/battle/pokebola.png" alt="" >
+        <div class="battleContainer__pokeball__capture" id="pokeballBatlle">
+          <img src="img/battle/pokebola.png" alt="">
         </div>
       </div>
 
@@ -149,7 +149,31 @@
       </div>
 
     </section>
+    <section class="inventory" id="inventory">
+      {{!-- Inicial --}}
+      <div class="inventory__active" id="init-inventory">
+        <div class="inventory__active__container">
+          <div class="inventory__active__container__img">
+            <img src="" alt="" id="init-inventory-img" >
+          </div>
+          <span id="init-inventory-name">Nombre</span>
+          <div class="inventory__active__container__health">
+            <div>HP:</div>
+            <div id="init-inventory-lifebar" class="inventory__active__container__health__bar"></div>
+          </div>
+        </div>
+      </div>
+      <div class="inventory__container">
 
+           {{!-- SLOTS --}}
+        <div class="inventory__container__slots" id="slots-inventory">
+
+        </div>
+      </div>
+      <div class="inventory__back">
+        <span>Back</span>
+      </div>
+    </section>
 
     <canvas>
     </canvas>

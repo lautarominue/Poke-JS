@@ -1,9 +1,11 @@
 import { enemyPokemon } from "./enemy/enemy.js"
 import { pokemonInicial } from "../invertory/playerInventory.js"
-import { healthBar } from "../battle/animation/lifeBar.js"
-import { writeChat } from "../function/index.js"
-import { lifeBarEnemy, lifeBarName, textChatBattle, MENUBATTLE } from "../utils/index.js"
+import { healthBar, healthBarAnimationNone } from "../battle/animation/lifeBar.js"
+import { addPokemon, writeChat } from "../function/index.js"
+import { lifeBarEnemy, lifeBarPokemonPlayer, textChatBattle, menuBattle,displayBLOCK,displayNONE,displayFLEX,DEFEAT } from "../utils/index.js"
 import { stopButtons, initButtons } from "./index.js"
+import { inventory } from "../invertory/index.js"
+
 
 let damage = 20
 let combatStatePlayer = false
@@ -11,9 +13,9 @@ let combatStateEnemy = false
 let combatState = false
 let captureState = false
 const timeAwait = 250
-const defeat = 0
 const arrayCapture = [{ transform: "rotate(0deg)" }, { transform: "rotate(90deg)" }, { transform: "rotate(0deg)" }, { transform: "rotate(-90deg)" }, { transform: "rotate(0deg)" }, { transform: "rotate(90deg)" }, { transform: "rotate(0deg)" }, { transform: "rotate(-90deg)" }, { transform: "rotate(0deg)" },]
-
+const invetory = document.getElementById('inventory')
+const backBtn = document.querySelector('.inventory__back')
 
 /**
  * @param {Bool} state 
@@ -51,8 +53,9 @@ const atack = () => {
 const capture = () => {
     const containerBall = document.getElementById('pokeballBatlleContainer')
     const ball = document.getElementById('pokeballBatlle')
-    containerBall.style.display = 'block'
-
+    containerBall.style.display = displayBLOCK
+    stopButtons()
+    addPokemon()
 
     containerBall.animate([
         { // from
@@ -77,8 +80,8 @@ const capture = () => {
     })
 
     setTimeout(() => {
-        containerBall.style.display = 'none'
-        containerBall.style.display = 'block'
+        containerBall.style.display = displayNONE
+        containerBall.style.display = displayBLOCK
 
         changeCaptureState(true)
 
@@ -111,7 +114,7 @@ const capture = () => {
                 Lo podras encontrar en tu pc.#                         
                 Haz click para finalizar el combate...`
             writeChat(textChatBattle, text)
-            textChatBattle.addEventListener('click', finishBattle, true)
+            textChatBattle.addEventListener('click', finishCapture, true)
         }, 3500);
 
 
@@ -119,15 +122,34 @@ const capture = () => {
 
 }
 
+const finishCapture = () => {
+    textChatBattle.removeEventListener('click', finishCapture, true)
+    const containerBall = document.getElementById('pokeballBatlleContainer')
+    containerBall.style.display = displayNONE
+    changeCaptureState(false)
+    skipBattle()
+
+}
+
 
 
 
 const inventoryBattle = () => {
+    inventory(true)
+    invetory.style.display = displayFLEX
+    invetory.style.backgroundColor = 'rgba(67, 69, 92, 0.8)'
+    backBtn.addEventListener('click', back, true)
 }
+
+const back = () => {
+    backBtn.removeEventListener('click', back, true)
+    invetory.style.display = displayNONE
+}
+
 
 const skipBattle = () => {
     changeCombatState(false)
-    MENUBATTLE.style.display = 'none'
+    menuBattle.style.display = displayNONE
     removeTextMenuBattle()
 }
 
@@ -137,9 +159,9 @@ const moveEnemy = () => {
     changeCombatStateEnemy(true)
     setTimeout(() => {
         let life = pokemonInicial.damage(damage)
-        healthBar(lifeBarName, life)
+        healthBar(lifeBarPokemonPlayer, life)
         changeCombatStateEnemy(false)
-        if (life > defeat) {
+        if (life > DEFEAT) {
             initButtons()
         } else {
             textChatBattle.style.zIndex = '9'
@@ -147,10 +169,14 @@ const moveEnemy = () => {
             let text = `Tu ${namePokemonPlayer} fue debilitado!!!`
             writeChat(textChatBattle, text)
             textChatBattle.addEventListener('click', finishBattle, true)
-            // textChatBattle.addEventListener('click', defeatPokemon, true)
         }
     }, timeAwait);
 
+}
+
+const finishBattle = () => {
+    textChatBattle.removeEventListener('click', finishBattle, true)
+    skipBattle()
 }
 
 const removeTextMenuBattle = () => {
@@ -163,7 +189,7 @@ const textMenuBattle = () => {
     let nameEnemy = enemyPokemon.getName().toUpperCase()
     let namePokemonPlayer = pokemonInicial.getName().toUpperCase()
     let life = enemyPokemon.getHealth()
-    if (life > defeat) {
+    if (life > DEFEAT) {
         let text = `Tu ${namePokemonPlayer} del pokemon ataco a ${nameEnemy}!!!,#                         
         Haz click para continuar...`
         writeChat(textChatBattle, text)
@@ -183,20 +209,18 @@ const textMenuBattle = () => {
 }
 
 
-const finishBattle = () => {
-    textChatBattle.removeEventListener('click', finishBattle, true)
-    skipBattle()
-}
+
+
 
 export {
     combatStatePlayer,
     combatStateEnemy,
-    changeCombatState,
+    captureState,
     combatState,
+    changeCombatState,
     atack,
     capture,
     inventoryBattle,
     skipBattle,
-    changeCaptureState,
-    captureState
+    changeCaptureState
 }

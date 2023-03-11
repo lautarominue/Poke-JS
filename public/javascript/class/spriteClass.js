@@ -24,35 +24,17 @@ class Sprite {
             this.position.x,
             this.position.y,
             this.image.width,
-            this.image.height / this.frames.max
+            this.image.height / this.frames.max 
         )
         if(!this.moving) return
 
         if ( this.frames.max > 1){
             this.frames.elapsed++
         }
-        if ( this.frames.elapsed % 10 === 0){
+        if ( this.frames.elapsed % 9 === 0){
             if (this.frames.val < this.frames.max - 1 ) this.frames.val++
             else this.frames.val = 0
         }
-    }
-    drawEnemy() {
-        c.drawImage(
-            this.image,
-            900, // x 
-            14, // y
-            300, // Ancho
-            300 //Altura
-        )
-    }
-    drawPlayerPokemon() {
-        c.drawImage(
-            this.image,
-            220, // x 
-            210, // y
-            450, // Ancho
-            450 //Altura
-        )
     }
     
 }

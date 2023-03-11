@@ -40,9 +40,9 @@ class Service {
         }
     }
 
-    async createProduct(code) {
+    async createProduct(body) {
         try {
-            return await repo.create(code)
+            return await repo.create(body)
         } catch (error) {
             console.error(error);
             return false;
