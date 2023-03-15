@@ -18,7 +18,7 @@ const position = { x: -700, y: 600 }
 const chatWelcome = 'Aqui podras curar tus pokemones. Recuerda presiona "E" para comezar el dialogo y "SPACE" para interactuar.'
 const timeout = 5000
 
-let visit = true
+let visit = false
 let foregroundCenter = createForeground(centerForeground)
 let backgroundCenter = createBackground(center)
 let boundariesTow = createBoundaries(collisionCenter, boundaryX, boundaryY)

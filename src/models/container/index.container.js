@@ -1,0 +1,1 @@
+export { ContenedorMongoDB } from "./mongo.container.js"

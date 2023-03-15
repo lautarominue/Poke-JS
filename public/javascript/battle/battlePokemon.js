@@ -1,5 +1,5 @@
 import { createSprite } from "../function/index.js";
-import { changeEnemy } from "./enemy/enemy.js";
+import { changeEnemy, changeEnemyObject } from "./enemy/enemy.js";
 import { PokemonObject } from "../class/objetcPokemonClass.js"
 
 let sprite = {}
@@ -18,16 +18,16 @@ const createPokemonEnemy = async () => {
         typeTwo = null
     }
     const name = data.name
-    const type = {one:typeTwo,two:typeTwo }
+    const type = {one:typeOne,two:typeTwo }
     const image = {
         front: data.sprites.front_default,
         back: data.sprites.back_default,
         thumnail: data.sprites.versions['generation-viii'].icons.front_default,
     }
     const pokemon = {
-        id:id,
         name:name,
-        type : {
+        idPokedex:id,
+        types : {
             one: type.one,
             two: type.two
         },
@@ -37,7 +37,7 @@ const createPokemonEnemy = async () => {
             back:image.back
         }
     }
-    
+    changeEnemyObject(pokemon)
     let enemy = new PokemonObject(pokemon)
     changeEnemy(enemy)
     let position = {x:900,y:14}

@@ -1,38 +1,13 @@
-// class PokemonObject {
-//     constructor(id, name) {
-//         this.id = id
-//         this.name = name
-//         this.health = 100
-//     }
-
-//     getId = () => this.id
-
-//     getName = () => this.name
-
-//     getHealth = () => this.health
-
-//     damage = atack => {
-//         this.health -= atack
-//         return this.health
-//     }
-
-//     potion = life => {
-//         this.health += life
-//         return this.health
-//     }
-
-// }
-
 import { SpriteBattle } from "./index.js"
 
 class PokemonObject {
-    constructor({ id, name, type, image }) {
-        this.id = id
+    constructor({ idPokedex, name, types, image }) {
+        this.id = idPokedex
         this.name = name
         this.health = 100
         this.thumnail = image.thumnail
         this.image = image
-        this.typeTwo = type.two ? type.two : null
+        this.type = types 
     }
 
     getId = () => this.id

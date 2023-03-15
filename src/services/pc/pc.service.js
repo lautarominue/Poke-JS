@@ -1,8 +1,9 @@
-import { PcRepo } from "../../repository/index.repository.js"
+import { DaoFactory } from "../../models/factory.js"
+
+const daoInventory = DaoFactory.getPcDao()
+const daoUser = DaoFactory.getUserDao()
 
 let instaciaPc = null
-
-const repo = new PcRepo
 
 
 class Service {
@@ -13,37 +14,24 @@ class Service {
         return instaciaPc
     }
 
-    async getAll() {
+    async getInventory(idUser) {
         try {
-            return await repo.getAll();
-        } catch (error) {
-            console.error(error);
-            return false;
+            let pc = await daoInventory.getPcUser(idUser)
+            if (pc) {
+                return { estado: "ok", pc: pc }
+            } else {
+                return { estado: "pcFalse" }
+            }
+        }
+        catch (error) {
+            console.error(error)
+            throw Error("Error en getByUsername");
         }
     }
 
-    async getProductById(id) {
+    async updateObjectById(id, object) {
         try {
-            const pokemon = await repo.getById(id)
-            return pokemon;
-        } catch (error) {
-            console.error(error);
-            return false;
-        }
-    }
-
-    async createProduct(pokemon) {
-        try {
-            return await repo.create(pokemon)
-        } catch (error) {
-            console.error(error);
-            return false;
-        }
-    }
-
-    async updateProductById(id, pokemon) {
-        try {
-            await repo.updateById(id, pokemon)
+            await daoInventory.updateById(id, object)
             return true;
         } catch (error) {
             console.error(error);
@@ -51,15 +39,14 @@ class Service {
         }
     }
 
-    async deleteProductById(id) {
+    async createPc(object) {
         try {
-            return await repo.removeById(id)
+            return await daoInventory.create(object)
         } catch (error) {
             console.error(error);
             return false;
         }
     }
-
 }
 
 export { Service as PcService }

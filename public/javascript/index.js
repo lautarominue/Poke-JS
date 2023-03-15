@@ -1,4 +1,5 @@
-import { animateTown,animateBattle } from './animation/index.js'
+import { animateTown } from './animation/index.js'
+import { getInventory } from './invertory/index.js'
 
+getInventory()
 animateTown()
-

@@ -4,6 +4,10 @@ import { interactionNpc } from "../interaction/index.js";
 import { changeStateInteraction, stateInteraction } from "../interaction/stateInteraction.js";
 import { closeInventory, openInventory, stateOpenInventory } from "../invertory/index.js"
 
+let stateDialogNpc = false
+let lastKey = ''
+
+
 // Teclas a utilizar
 const keys = {
     w: {
@@ -25,7 +29,6 @@ const keys = {
         pressed: false
     }
 }
-let lastKey = ''
 
 
 window.addEventListener('keydown', (e) => {
@@ -47,9 +50,6 @@ window.addEventListener('keyup', (e) => {
         case 'e': initE(); break;
         case ' ': initSpace(); break;
         case 'i': activeInventory(); break
-        case 'o': activeInventory2(); break
-        case 'p': activeInventory3(); break
-        case 'j': activeInventory4(); break
     }
 })
 const activeInventory = () => {
@@ -62,25 +62,16 @@ const activeInventory = () => {
 
 const initE = () => {
     if (npcDetected.state) {
+        stateDialogNpc = true
         interactionNpc()
     }
 }
 
 const initSpace = () => {
-    if (npcDetected.state) {
+    if (stateDialogNpc) {
         npcDetected.id == 392 ? cureTeam() : ''
     }
 }
-
-
-
-
-const activeInventory2 = () => console.log('asd')
-const activeInventory3 = () => {
-}
-const activeInventory4 = () => {
-}
-
 
 
 export { keys, lastKey }

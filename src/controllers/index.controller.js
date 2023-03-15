@@ -1,0 +1,5 @@
+export {npcController} from "./npcs/npc.controller.js"
+export {inventoryController} from "./inventory/inventory.controller.js"
+export {objectController} from "./objects/object.controller.js"
+export {pcController} from "./pc/pc.controller.js"
+export {userController} from "./users/user.controller.js"

@@ -6,7 +6,6 @@ import { lifeBarEnemy, lifeBarPokemonPlayer, textChatBattle, menuBattle,displayB
 import { stopButtons, initButtons } from "./index.js"
 import { inventory } from "../invertory/index.js"
 
-
 let damage = 20
 let combatStatePlayer = false
 let combatStateEnemy = false
@@ -130,9 +129,6 @@ const finishCapture = () => {
     skipBattle()
 
 }
-
-
-
 
 const inventoryBattle = () => {
     inventory(true)

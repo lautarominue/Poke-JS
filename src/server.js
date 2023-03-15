@@ -1,34 +1,35 @@
 import express from "express"
 import passport from "passport";
 import mongoose from "mongoose";
-import cors from 'cors' //error de cors
+import cors from 'cors' 
 import cookieParser from "cookie-parser";
 import dotenv from 'dotenv'
 import { engine } from "express-handlebars";
 import { createServer as HttpServer } from "http";
 import { Server as IOServer } from "socket.io";
-import { socketEvent } from "./socket/event.js";
-// import { initPassport } from "./passport/init.js";
-import { sessionMongo } from "./middlewares/index.middlewares.js";
+import { socketEvent } from "./utils/chat/socketEvent.js";
+import { sessionMongo } from "./middlewares/index.middleware.js";
 import {
     npcRouter,
     objectRouter,
-    userRouter
+    userRouter,
+    pcRouter,
+    inventoryRouter
 } from "./routes/index.routes.js";
 
 dotenv.config()
 
-const PORT = process.env.PORT || 8400;
+const PORT = process.env.PORT || 8500;
 const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:477";
 
 const app = express()
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 socketEvent(io)
-// Anulo el error de CORS
+
+// USES
+
 app.use(cors())
-
-
 app.use(cookieParser());
 app.use(sessionMongo);
 app.engine(
@@ -48,12 +49,16 @@ app.use(express.urlencoded({ extended: true }));
 // session
 app.use(passport.initialize());
 app.use(passport.session());
-// initPassport(passport)
 
 //Rutas
+app.use("/", userRouter);
 app.use("/api/npc", npcRouter)
 app.use("/api/object", objectRouter)
-app.use("/", userRouter);
+app.use("/api/pc", pcRouter)
+app.use("/api/inventory", inventoryRouter)
+
+
+
 
 
 httpServer.listen(PORT, async () => {

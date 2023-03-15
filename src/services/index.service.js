@@ -1,4 +1,5 @@
-export { NPCService } from "./npc/npc.service.js"
-export { ObjectService } from "./object/object.service.js"
-export { UsuarioService } from "./user/user.service.js"
+export { ObjectService } from "./objects/object.service.js"
+export { InventoryService } from "./inventory/inventory.service.js"
+export { NpcService } from "./npcs/npc.service.js"
 export { PcService } from "./pc/pc.service.js"
+export { UserService } from "./users/user.service.js"

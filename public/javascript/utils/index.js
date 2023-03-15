@@ -3,11 +3,24 @@
 const URLMAPS = '../img/maps/'
 const urlFaceset = '../img/asset/faceset/'
 const URLPLAYER = '../img/asset/player/'
+// Api rest
+const LOCALHOST = 'http://localhost:3040/'
+const NPCURL = 'api/npc/'
+const USERURL = 'user/'
+const INVENTORYURL = 'api/inventory/'
+const PCURL = 'api/pc/'
+const OBJECTURL = 'api/object/'
 
 export {
     URLPLAYER,
     URLMAPS,
-    urlFaceset
+    urlFaceset,
+    LOCALHOST,
+    NPCURL,
+    USERURL,
+    INVENTORYURL,
+    PCURL,
+    OBJECTURL
 }
 
 //get IDs

@@ -3,7 +3,7 @@ import MongoStore from "connect-mongo";
 import dotenv from 'dotenv'
 dotenv.config()
 const MONGO_URI = process.env.MONGO_URI || "";
-export const sessionMongo = session({
+const sessionMongo = session({
   store: MongoStore.create({
     mongoUrl: MONGO_URI,
     ttl: 600,
@@ -16,3 +16,4 @@ export const sessionMongo = session({
     maxAge: 600000,
   },
 });
+export { sessionMongo }
