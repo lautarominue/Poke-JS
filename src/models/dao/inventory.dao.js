@@ -26,37 +26,25 @@ class DaoMongoDb extends ContenedorMongoDB {
         )
     }
 
-    async getByCode(code) {
+    async getInventoryUser(idUser) {
         try {
-            let objects = await super.getAll();
-            const object = objects.filter((n) => n.code === code)
-            return object;
-        }
-        catch (error) {
-            loggerError.error(error)
-            throw Error("Error en getByCategory");
+            let inventorys = await super.getAll();
+            const inventory = inventorys.find((n) => String(n.idUser) === String(idUser))
+            return inventory
+        } catch (error) {
+            logger.error(error)
+            throw Error("Error en el getById")
         }
     }
-    // async getInventoryUser(idUser) {
-    //     try {
-    //         let user = await super().coleccion.findOne({ [this.ID_USER]: idUser })
-    //         return user
-    //     } catch (error) {
-    //         logger.error(error)
-    //         throw Error("Error en el getById")
-    //     }
-    // }
-    // async getInventoryUser(idUser) {
-    //     try {
-    //         let objects = await super.getAll();
-    //         console.log("desde DAO",objects)
-    //         const object = objects.filter((n) => n.idUser === idUser)
-    //         return object;
-    //     } catch (error) {
-    //         logger.error(error)
-    //         throw Error("Error en el getById")
-    //     }
-    // }
+    
+    async updateBag(bag) {
+        try {
+            
+        } catch (error) {
+            logger.error(error)
+            throw Error('Error en el getById')
+        }
+    }
 }
 
 export { DaoMongoDb as InventoryDaoMongoDB }

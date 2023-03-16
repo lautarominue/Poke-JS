@@ -32,6 +32,16 @@ class Service {
         }
     }
 
+    async getObjectByCategory(category){
+        try {
+            const object = await dao.getByCategory(category)
+            return object;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
+
     async getObjectByCode(code) {
         try {
             // const object = await dao.getById(code)

@@ -3,10 +3,10 @@ import { PcService } from "../../services/index.service.js";
 const service = PcService.getInstance();
 const controller = {}
 
-controller.getInventory = async (req, res) => {
+controller.getPc = async (req, res) => {
     try {
         const { idUser,username } = req.session;
-        const response = await service.getInventory(idUser);
+        const response = await service.getPc(idUser);
         if (response.estado === "ok") {
             res.status(201)
             res.send(response.pc);

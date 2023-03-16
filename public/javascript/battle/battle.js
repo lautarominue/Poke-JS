@@ -2,7 +2,7 @@ import { enemyPokemon } from "./enemy/enemy.js"
 import { pokemonInicial } from "../invertory/playerInventory.js"
 import { healthBar, healthBarAnimationNone } from "../battle/animation/lifeBar.js"
 import { addPokemon, writeChat } from "../function/index.js"
-import { lifeBarEnemy, lifeBarPokemonPlayer, textChatBattle, menuBattle,displayBLOCK,displayNONE,displayFLEX,DEFEAT } from "../utils/index.js"
+import { lifeBarEnemy, lifeBarPokemonPlayer, textChatBattle, menuBattle,displayBLOCK,displayNONE,displayFLEX,DEFEAT, VOIDTEXT } from "../utils/index.js"
 import { stopButtons, initButtons } from "./index.js"
 import { inventory } from "../invertory/index.js"
 
@@ -177,7 +177,7 @@ const finishBattle = () => {
 
 const removeTextMenuBattle = () => {
     textChatBattle.style.zIndex = '-9'
-    textChatBattle.innerHTML = ''
+    textChatBattle.innerHTML = VOIDTEXT
 }
 
 const textMenuBattle = () => {

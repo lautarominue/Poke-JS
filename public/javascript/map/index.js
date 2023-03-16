@@ -3,4 +3,4 @@ export { offset } from "./offset/index.js";
 export { createBackground } from "./background/index.js";
 export { createBoundaries } from "./boundaries/index.js";
 export { createMovables } from "./movables/index.js";
-export { BATTLEZONE, NPC, DOOR, OBJECT, WALL } from "./code/code.js"
+export { BATTLEZONE, NPC, DOOR, OBJECT, WALL,pcCODE,cureCODE } from "./code/code.js"

@@ -1,4 +1,4 @@
-import { rectangularCollision, changeNpcDetected } from "../function/index.js"
+import { rectangularCollision, changeNpcDetected, npcDetected } from "../function/index.js"
 import { player } from "../player/index.js"
 import { keys, lastKey } from "../keys/keys.js"
 import { changeAnimation } from "./changeAnimation.js"
@@ -9,6 +9,7 @@ import { stateInteraction } from "../interaction/stateInteraction.js"
 import { removeInteraction } from "../interaction/removeInteraction.js"
 import { DOOR, NPC, WALL } from "../map/index.js"
 import { c } from "../canvas/canvas.js"
+import { printDialogDefault } from "../dialog/index.js"
 // Ubicacion de Mapas
 const center = 'pokemonCenter/center'
 const centerForeground = 'pokemonCenter/centerForeground'
@@ -74,7 +75,6 @@ let animate = () => {
                     }
                 }
             })) {
-                // console.log(boundary.symbol)
                 if (boundary.symbol > DOOR.start && boundary.symbol <= DOOR.final) {
                     window.cancelAnimationFrame(animationId)
                     changeAnimation(boundary.symbol)

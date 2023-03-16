@@ -7,7 +7,7 @@ const interactionNpc = () => {
         .then((data) => {
             console.log(data)
             printDialogDefault(data)
-        });
+        })
 
 }
 

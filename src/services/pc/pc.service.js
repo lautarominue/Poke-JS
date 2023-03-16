@@ -1,7 +1,6 @@
 import { DaoFactory } from "../../models/factory.js"
 
 const daoInventory = DaoFactory.getPcDao()
-const daoUser = DaoFactory.getUserDao()
 
 let instaciaPc = null
 
@@ -14,7 +13,7 @@ class Service {
         return instaciaPc
     }
 
-    async getInventory(idUser) {
+    async getPc(idUser) {
         try {
             let pc = await daoInventory.getPcUser(idUser)
             if (pc) {

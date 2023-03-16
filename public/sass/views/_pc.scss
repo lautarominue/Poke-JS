@@ -1,0 +1,163 @@
+.pc {
+    position: absolute;
+    width: 1280px;
+    height: 720px;
+    background-color: rgba(67, 69, 92, 1);
+    display: none;
+
+    &__back {
+        position: absolute;
+        right: 10%;
+        bottom: 10%;
+
+        & span {
+            padding: 1rem;
+            border-radius: 40%;
+            background-color: rgba(212, 212, 212, 0.767);
+            z-index: 100;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+    }
+
+    &__active {
+        border-right: solid 5px black;
+        width: 40%;
+        display: flex;
+        justify-content: center;
+
+        &__container {
+            margin: 3rem;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            background-color: rgba(212, 212, 212, 0.767);
+            padding: 1rem 0;
+            border-radius: 5%;
+
+            &__health {
+                display: flex;
+                align-items: center;
+                padding: 1rem;
+
+                &__bar {
+                    width: 400px;
+                    height: 8px;
+                    border: 2px solid #000;
+                    border-radius: 4px;
+                    box-shadow: inset 400px 0 0 0 green;
+                }
+            }
+
+            &__img {
+                background-color: black;
+                border-radius: 50%;
+                border: solid white 4px;
+
+                & img {
+                    width: 300px;
+                }
+            }
+
+            & span {
+                font-size: 1.7rem;
+            }
+
+        }
+    }
+
+    &__container {
+        width: 60%;
+
+        border: #000 solid 5px;
+
+        &__slots__left {
+            display: grid;
+            grid-template-columns: auto auto;
+            width: 300px;
+            margin: 3rem;
+            gap: 55px;
+            justify-content: space-around;
+            width: 500px;
+
+            &__ind {
+                cursor: pointer;
+                padding: 8px;
+                display: flex;
+                border-radius: 10%;
+                background-color: rgba(212, 212, 212, 0.767);
+                justify-content: space-around;
+
+                &__left {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    &__img {
+                        background-color: rgba(0, 0, 0, 0.87);
+                        border-radius: 50%;
+                        border: solid white 4px;
+
+                        & img {
+                            margin-bottom: 20px;
+                            width: 80px;
+                        }
+                    }
+                }
+
+            }
+        }
+
+
+        &__slots__right {
+            margin: 3rem;
+            display: grid;
+            grid-template-columns: auto auto;
+            gap: 20px;
+            overflow: auto;
+            height: 620px;
+            justify-content: space-around;
+            overflow: auto;
+            align-items: center;
+
+            &__ind {
+
+                cursor: pointer;
+                padding: 8px;
+                display: flex;
+                border-radius: 10%;
+                background-color: rgba(212, 212, 212, 0.767);
+
+
+                &__first {
+                    margin-top: 10rem;
+                }
+
+                &__right {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    &__img {
+                        background-color: rgba(0, 0, 0, 0.87);
+                        border-radius: 50%;
+                        border: solid white 4px;
+
+                        & img {
+                            margin-bottom: 20px;
+                            width: 80px;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+}
+
+
+.inventory__active__container__rigth {
+    display: flex;
+    flex-direction: column;
+}

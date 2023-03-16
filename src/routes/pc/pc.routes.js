@@ -2,7 +2,7 @@ import { Router } from "express";
 import { pcController } from "../../controllers/index.controller.js";
 const router = Router()
 
-router.get('/',pcController.getInventory)
+router.get('/',pcController.getPc)
 
 router.post("/", pcController.create);
 

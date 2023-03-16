@@ -1,8 +1,10 @@
 import { printDialogDefault } from "../dialog/index.js";
-import { changeNpcDetected, npcDetected,cureTeam } from "../function/index.js";
-import { interactionNpc } from "../interaction/index.js";
+import { changeNpcDetected, npcDetected } from "../function/index.js";
+import { interactionFuncion, interactionNpc } from "../interaction/index.js";
 import { changeStateInteraction, stateInteraction } from "../interaction/stateInteraction.js";
 import { closeInventory, openInventory, stateOpenInventory } from "../invertory/index.js"
+import { pcCODE } from "../map/index.js";
+import { urlFaceset } from "../utils/index.js";
 
 let stateDialogNpc = false
 let lastKey = ''
@@ -63,13 +65,19 @@ const activeInventory = () => {
 const initE = () => {
     if (npcDetected.state) {
         stateDialogNpc = true
-        interactionNpc()
+        if (npcDetected.id !== pcCODE) {
+            interactionNpc()
+        } else {
+            let faceset = 'facesetPc.png'
+            let chat = 'Presiona "Space" para acceder a todos tus Pokemones'
+            printDialogDefault({ faceset, chat })
+        }
     }
 }
 
 const initSpace = () => {
     if (stateDialogNpc) {
-        npcDetected.id == 392 ? cureTeam() : ''
+        interactionFuncion()
     }
 }
 

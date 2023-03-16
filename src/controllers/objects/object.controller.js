@@ -19,6 +19,15 @@ controller.getById = async (req, res) => {
         : res.status(400).json({ "error": "Object not found" })
 }
 
+controller.getByCategory = async (req, res) => {
+    const { category } = req.params;
+    const object = await service.getObjectByCategory(category);
+
+    object
+        ? res.status(200).json(object)
+        : res.status(400).json({ "error": "Object not found" })
+}
+
 controller.getByCode = async (req, res) => {
     const { code } = req.params;
     const object = await service.getObjectByCode(code);

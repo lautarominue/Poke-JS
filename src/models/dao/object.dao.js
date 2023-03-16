@@ -58,6 +58,19 @@ class DaoMongoDb extends ContenedorMongoDB {
             throw Error("Error en getByCategory");
         }
     }
+
+    async getByCategory(category) {
+        try {
+            let objects = await super.getAll();
+            const object = objects.filter((n) => n.category.name === category)
+            return object
+        }
+        catch (error) {
+            loggerError.error(error)
+            throw Error("Error en getByCategory");
+        }
+    }
+
 }
 
 export { DaoMongoDb as ObjectDaoMongoDB }

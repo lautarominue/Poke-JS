@@ -69,12 +69,13 @@
       </div>
 
     </section>
+    {{!-- Inventory --}}
     <section class="inventory" id="inventory">
       {{!-- Inicial --}}
       <div class="inventory__active" id="init-inventory">
         <div class="inventory__active__container">
           <div class="inventory__active__container__img">
-            <img src="" alt="" id="init-inventory-img" >
+            <img src="" alt="" id="init-inventory-img">
           </div>
           <span id="init-inventory-name">Nombre</span>
           <div class="inventory__active__container__health">
@@ -85,7 +86,7 @@
       </div>
       <div class="inventory__container">
 
-           {{!-- SLOTS --}}
+        {{!-- SLOTS --}}
         <div class="inventory__container__slots" id="slots-inventory">
 
         </div>
@@ -94,7 +95,22 @@
         <span>Back</span>
       </div>
     </section>
+    {{!-- Pc --}}
+    <section class="pc" id="pc" style="display: flex;">
+      <div class="pc__container" id="init-pc">
+        <div class="pc__container__slots__left" id="slots-pc-team">
 
+        </div>
+      </div>
+      <div class="pc__container">
+
+        <div class="pc__container__slots__right" id="slots-pc">
+        </div>
+      </div>
+      <div class="pc__back">
+        <span id="pc-btn-back">Back</span>
+      </div>
+    </section>
     <canvas>
     </canvas>
   </section>

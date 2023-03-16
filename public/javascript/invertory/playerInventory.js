@@ -1,31 +1,12 @@
 import { PokemonObject } from "../class/index.js";
+import { getUser, getPc } from "../function/index.js";
+import { LOCALHOST, PCURL,MAXTEAM } from "../utils/index.js";
 
 let teamPokemons = []
 let pcPokemon = []
 let pokemonInicial = teamPokemons[0]
 
-const getPc = async () => {
-    let pc = await fetch('http://localhost:3040/api/pc')
-    if (pc) {
-        pc = pc.json()
-        return pc
-    } else {
-        return false
-    }
-}
-
-const getUser = async () => {
-    let user = await fetch('http://localhost:3040/user')
-    if (user) {
-        user = user.json()
-        return user
-    } else {
-        return false
-    }
-}
-
 const createPc = async () => {
-    console.log('createPc')
     const user = await getUser()
     const idUser = user.idUser
     let newPc = {
@@ -46,7 +27,7 @@ const createPc = async () => {
             }
         ]
     }
-    const url = `http://localhost:3040/api/pc`
+    const url = LOCALHOST + PCURL
     let pc = await fetch(url, {
         method: "POST",
         mode: "cors",
@@ -69,14 +50,12 @@ const getInventory = async () => {
 }
 
 const actTeamAndPc = pc => {
-    const MAXTEAM = 6
-
     pc.pokemons.forEach((pokemon, index) => {
-        index <= MAXTEAM
+        index < MAXTEAM
             ? teamPokemons.push(new PokemonObject(pokemon))
             : pcPokemon.push(pokemon)
     })
-    pokemonInicial = teamPokemons[0]
+    pokemonInicial = teamPokemons[0]    
 }
 
 const stateHealthPokemonInventory = () => {
@@ -89,6 +68,10 @@ const changePositionArray = (id) => {
     const pokemon = teamPokemons.splice(id, 1)
     teamPokemons.unshift(pokemon[0])
     pokemonInicial = teamPokemons[0]
+}
+
+const removePokemonTeam = positon =>{
+    
 }
 
 export { pokemonInicial, stateHealthPokemonInventory, teamPokemons, changePositionArray, getInventory }

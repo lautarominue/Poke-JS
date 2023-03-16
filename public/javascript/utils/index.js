@@ -33,6 +33,10 @@ const btnAtack = document.getElementById('btn-atackOne')
 const btnCapture = document.getElementById('btn-capture')
 const btnInventario = document.getElementById('btn-inventory')
 const btnSkip = document.getElementById('btn-skip')
+const pcHtml = document.getElementById('pc')
+const pcBackBtn = document.getElementById('pc-btn-back')
+const slotPc = document.getElementById('slots-pc')
+const slotPcTeam = document.getElementById('slots-pc-team')
 
 export {
     menuBattle,
@@ -42,7 +46,11 @@ export {
     btnAtack,
     btnCapture,
     btnInventario,
-    btnSkip
+    btnSkip,
+    pcHtml,
+    pcBackBtn,
+    slotPc,
+    slotPcTeam
 }
 
 // get Clases
@@ -65,6 +73,7 @@ const displayBLOCK = 'block'
 const DEFEAT = 0
 const VOIDTEXT = ''
 const BR = `<br>`
+const MAXTEAM = 6
 
 export {
     displayBLOCK,
@@ -72,5 +81,7 @@ export {
     displayNONE,
     DEFEAT,
     VOIDTEXT,
-    BR
+    BR,
+    MAXTEAM
 }
+

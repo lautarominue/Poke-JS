@@ -1,14 +1,17 @@
 import { SpriteBattle } from "./index.js"
 
 class PokemonObject {
-    constructor({ idPokedex, name, types, image }) {
+    constructor({ idPokedex, name, types, image,_id }) {
         this.id = idPokedex
         this.name = name
         this.health = 100
         this.thumnail = image.thumnail
         this.image = image
         this.type = types 
+        this.objectId = _id
     }
+
+    getObjectId = () => this.objectId
 
     getId = () => this.id
 
