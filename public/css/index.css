@@ -1,6 +1,42 @@
 body {
   background-color: black; }
 
+.config__img {
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  right: 25;
+  top: 25; }
+
+.config__container {
+  display: none; }
+  .config__container img {
+    position: absolute;
+    top: 30%;
+    left: 25%; }
+  .config__container span {
+    position: absolute;
+    text-align: center;
+    font-size: 1.5rem;
+    width: 203px;
+    height: 40px;
+    left: 552;
+    top: 289; }
+  .config__container__yes {
+    position: absolute;
+    width: 160px;
+    height: 97px;
+    left: 765;
+    top: 380;
+    cursor: pointer; }
+  .config__container__no {
+    cursor: pointer;
+    position: absolute;
+    width: 160px;
+    height: 97px;
+    left: 370;
+    top: 380; }
+
 .body__game {
   display: flex;
   justify-content: center; }
@@ -268,6 +304,105 @@ body {
 .user span {
   color: green !important; }
 
+.market {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background-image: url("../img/interface/ecommerse/market.png"); }
+  .market__left {
+    width: 100%;
+    height: 100%; }
+    .market__left__mochila {
+      position: absolute;
+      margin-top: 41px;
+      margin-left: 20px;
+      width: 125px;
+      height: 116px;
+      background-color: rgba(255, 0, 0, 0.432); }
+      .market__left__mochila img {
+        width: 100%;
+        height: 100%; }
+    .market__left__total {
+      position: absolute;
+      margin-top: 53px;
+      margin-left: 441px;
+      width: 170px;
+      height: 35px;
+      text-align: center;
+      font-size: 1.2rem; }
+    .market__left__totalNumerico {
+      position: absolute;
+      margin-top: 111px;
+      margin-left: 441px;
+      width: 170px;
+      height: 35px;
+      text-align: center;
+      font-size: 1.2rem; }
+    .market__left__container {
+      position: absolute;
+      margin-top: 189px;
+      margin-left: 11px;
+      width: 619px;
+      height: 517px;
+      overflow: auto; }
+      .market__left__container__items {
+        display: flex;
+        align-items: center;
+        margin: 1rem;
+        padding: 1rem;
+        border: 2px solid black;
+        justify-content: space-between;
+        font-size: 1.8rem;
+        border-radius: 1rem;
+        cursor: pointer; }
+        .market__left__container__items img {
+          width: 96px;
+          height: 96px; }
+  .market__right {
+    width: 100%;
+    height: 100%; }
+    .market__right__button {
+      position: absolute;
+      bottom: 0;
+      width: 624px;
+      height: 145px; }
+      .market__right__button__yes {
+        position: absolute;
+        width: 185px;
+        height: 114px;
+        margin: 16px 0 0 380px; }
+      .market__right__button__no {
+        margin: 16px 0 0 80px;
+        position: absolute;
+        width: 185px;
+        height: 114px; }
+    .market__right__price {
+      margin: 453px 0 0 197px;
+      position: absolute;
+      width: 260px;
+      height: 56px;
+      justify-content: center;
+      text-align: center;
+      font-size: 1.7rem; }
+    .market__right__product {
+      margin: 15px 0 0 14px;
+      position: absolute;
+      width: 616px;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: space-around; }
+      .market__right__product img {
+        width: 128px;
+        height: 128px; }
+      .market__right__product div {
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+
 .pc {
   position: absolute;
   width: 1280px;
@@ -400,9 +535,20 @@ body {
     border-right: solid 5px black;
     width: 40%;
     display: flex;
-    justify-content: center; }
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center; }
+    .inventory__active__bag {
+      background-color: rgba(212, 212, 212, 0.767);
+      padding: 1.5rem;
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .inventory__active__bag__container {
+        display: flex; }
     .inventory__active__container {
-      margin: 3rem;
+      margin: 3rem 1rem;
       display: flex;
       align-items: center;
       flex-direction: column;

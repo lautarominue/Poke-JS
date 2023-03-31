@@ -5,18 +5,18 @@ const controller = {}
 
 controller.getPc = async (req, res) => {
     try {
-        const { idUser,username } = req.session;
-        const response = await service.getPc(idUser);
+        const { idUser, username } = req.session
+        const response = await service.getPc(idUser)
         if (response.estado === "ok") {
             res.status(201)
-            res.send(response.pc);
+            res.send(response.pc)
         } else if (response.estado === "pcFalse") {
-            res.status(400);
-            res.send({ error: `pc ${username} no existe` });
+            res.status(400)
+            res.send({ error: `pc ${username} no existe` })
         }
     } catch (error) {
-        console.error(error);
-        throw Error("Error en addPtoToCarrito carritoController");
+        console.error(error)
+        throw Error("Error en addPtoToCarrito carritoController")
     }
 }
 
@@ -24,7 +24,6 @@ controller.getPc = async (req, res) => {
 controller.update = async (req, res) => {
     const { id } = req.params;
     const { body } = req;
-    console.log(body)
     const wasUpdated = await service.updateObjectById(id, body);
 
     wasUpdated

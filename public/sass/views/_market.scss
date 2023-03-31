@@ -1,0 +1,140 @@
+.market {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: none;
+    background-image: url('../img/interface/ecommerse/market.png');
+
+    &__left {
+        // background-color: rgba(255, 0, 0, 0.432);
+        // display: flex;
+        width: 100%;
+        height: 100%;
+
+        &__mochila {
+            position: absolute;
+            margin-top: 41px;
+            margin-left: 20px;
+            width: 125px;
+            height: 116px;
+            background-color: rgba(255, 0, 0, 0.432);
+
+            & img {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        &__total {
+            position: absolute;
+            margin-top: 53px;
+            margin-left: 441px;
+            width: 170px;
+            height: 35px;
+            // background-color: rgba(0, 255, 42, 0.432);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        &__totalNumerico {
+            position: absolute;
+            margin-top: 111px;
+            margin-left: 441px;
+            width: 170px;
+            height: 35px;
+            // background-color: rgba(238, 255, 0, 0.432);
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        &__container {
+            position: absolute;
+            margin-top: 189px;
+            margin-left: 11px;
+            width: 619px;
+            height: 517px;
+            overflow: auto;
+            // background-color: rgba(60, 0, 255, 0.432);
+            &__items {
+                display: flex;
+                align-items: center;
+                margin: 1rem;
+                padding: 1rem;
+                border: 2px solid black;
+                justify-content: space-between;
+                font-size: 1.8rem;
+                border-radius: 1rem;
+                cursor: pointer;
+
+                & img {
+                    width: 96px;
+                    height: 96px;
+                }
+            }
+        }
+    }
+
+    &__right {
+        // background-color: rgba(255, 255, 0, 0.466);
+        width: 100%;
+        height: 100%;
+
+        &__button {
+            position: absolute;
+            bottom: 0;
+            width: 624px;
+            height: 145px;
+
+            &__yes {
+                position: absolute;
+                width: 185px;
+                height: 114px;
+                // background-color: rgba(0, 255, 221, 0.432);
+                margin: 16px 0 0 380px;
+            }
+
+            &__no {
+                margin: 16px 0 0 80px;
+                position: absolute;
+                width: 185px;
+                height: 114px;
+                // background-color: rgba(255, 0, 191, 0.432);
+            }
+        }
+
+        &__price {
+            margin: 453px 0 0 197px;
+            position: absolute;
+            width: 260px;
+            height: 56px;
+            // background-color: rgba(255, 0, 191, 0.432);
+            justify-content: center;
+            text-align: center;
+            font-size: 1.7rem;
+        }
+
+        &__product {
+            margin: 15px 0 0 14px;
+            position: absolute;
+            width: 616px;
+            height: 400px;
+            // background-color: rgba(26, 163, 187, 0.432);
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            & img {
+                width: 128px;
+                height: 128px;
+            }
+
+            & div {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    }
+}

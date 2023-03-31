@@ -1,7 +1,7 @@
 import { healthBarAnimationNone, healthBar } from '../battle/animation/lifeBar.js'
-import { teamPokemons, changePositionArray, pokemonInicial } from './index.js'
+import { teamPokemons, changePositionArray, pokemonInicial, bagObject } from './index.js'
 import { changeSprite } from '../battle/index.js'
-import { lifeBarPokemonPlayer } from '../utils/index.js'
+import { inventoryMasterball, inventoryPokeball, lifeBarPokemonPlayer } from '../utils/index.js'
 
 
 const SLOTS = document.getElementById('slots-inventory')
@@ -46,6 +46,8 @@ const closeInventory = () => {
  */
 const inventory = combat => {
     if (teamPokemons.length) {
+        inventoryMasterball.textContent = 'x' + bagObject.cantMasterball()
+        inventoryPokeball.textContent= 'x' + bagObject.cantPokeball()
         const FIRST = 0
         SLOTS.innerHTML = ''
         teamPokemons.forEach((pokemon, index) => {
@@ -85,16 +87,16 @@ const inventory = combat => {
             }
         })
         if (combat) {
-            buttonsInventory(changePositionInventoryBattle,false)
+            buttonsInventory(changePositionInventoryBattle, false)
         } else {
-            buttonsInventory(changePositionInventory,false)
+            buttonsInventory(changePositionInventory, false)
         }
     } else {
         return false
     }
 }
 
-const buttonsInventory = (typeFunction,remove) => {
+const buttonsInventory = (typeFunction, remove) => {
     for (let index = 1; index < teamPokemons.length; index++) {
         if (!remove) {
             document.getElementById(`slot-slot-${index}`).addEventListener('click', typeFunction, true)
@@ -106,7 +108,7 @@ const buttonsInventory = (typeFunction,remove) => {
 
 const changePositionInventoryBattle = event => {
     let id = parseInt(event.explicitOriginalTarget.id.slice(-1))
-    buttonsInventory(changePositionInventoryBattle,true)
+    buttonsInventory(changePositionInventoryBattle, true)
     changePositionArray(id)
     invetory.style.display = 'none'
     const position = { x: 220, y: 210 }
@@ -117,12 +119,9 @@ const changePositionInventoryBattle = event => {
     healthBar(lifeBarPokemonPlayer, life)
 }
 
-
-
-
 const changePositionInventory = event => {
     let id = parseInt(event.explicitOriginalTarget.id.slice(-1))
-    buttonsInventory(changePositionInventory,true)
+    buttonsInventory(changePositionInventory, true)
     changePositionArray(id)
     inventory()
 }

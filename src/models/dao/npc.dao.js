@@ -8,7 +8,7 @@ class DaoMongoDb extends ContenedorMongoDB {
 
     constructor() {
         super(
-            'npcs',
+            'npcPokemon',
             new Schema({
                 name: {
                     type: String,

@@ -37,6 +37,17 @@ const pcHtml = document.getElementById('pc')
 const pcBackBtn = document.getElementById('pc-btn-back')
 const slotPc = document.getElementById('slots-pc')
 const slotPcTeam = document.getElementById('slots-pc-team')
+const itemContainer = document.getElementById('item-container')
+const marketItemSell = document.getElementById('market-item-sell')
+const marketBack = document.getElementById('btn-back-market')
+const marketNext = document.getElementById('btn-next-market')
+const marketNo = document.getElementById('market-no')
+const marketYes = document.getElementById('market-yes')
+const marketTotal = document.getElementById('total-market')
+const inventoryPokeball = document.getElementById('inventory-pokeball')
+const inventoryMasterball = document.getElementById('inventory-masterball')
+const configYes = document.getElementById('config-yes')
+const configNo = document.getElementById('config-no')
 
 export {
     menuBattle,
@@ -50,7 +61,18 @@ export {
     pcHtml,
     pcBackBtn,
     slotPc,
-    slotPcTeam
+    slotPcTeam,
+    itemContainer,
+    marketItemSell,
+    marketBack,
+    marketNext,
+    marketNo,
+    marketYes,
+    marketTotal,
+    inventoryMasterball,
+    inventoryPokeball,
+    configYes,
+    configNo
 }
 
 // get Clases
@@ -58,11 +80,19 @@ export {
 const lifeBarPokemonPlayer = document.querySelector('.battleContainer__player__health__bar')
 const lifeBarEnemy = document.querySelector('.battleContainer__enemy__health__bar')
 const backBtn = document.querySelector('.inventory__back')
+const market = document.querySelector('.market')
+const marketPriceItem = document.querySelector('.market__right__price')
+const configBtn = document.querySelector('.config__img')
+const configDialog = document.querySelector('.config__container')
 
 export {
     backBtn,
     lifeBarEnemy,
-    lifeBarPokemonPlayer
+    lifeBarPokemonPlayer,
+    market,
+    marketPriceItem,
+    configBtn,
+    configDialog
 }
 
 // Constantes
@@ -74,6 +104,55 @@ const DEFEAT = 0
 const VOIDTEXT = ''
 const BR = `<br>`
 const MAXTEAM = 6
+const MINTEAM = 1
+let GET = {
+    method: "GET",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: ''
+}
+let POST = {
+    method: "POST",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: ''
+}
+let PUT = {
+    method: "PUT",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: ''
+}
+let DELETE = {
+    method: "DELETE",
+    mode: "cors",
+    cache: "no-cache",
+    credentials: "same-origin",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    redirect: "follow",
+    referrerPolicy: "no-referrer",
+    body: ''
+}
 
 export {
     displayBLOCK,
@@ -82,6 +161,11 @@ export {
     DEFEAT,
     VOIDTEXT,
     BR,
-    MAXTEAM
+    MAXTEAM,
+    MINTEAM,
+    GET,
+    POST,
+    PUT,
+    DELETE
 }
 

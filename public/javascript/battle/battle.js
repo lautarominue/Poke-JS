@@ -2,9 +2,9 @@ import { enemyPokemon } from "./enemy/enemy.js"
 import { pokemonInicial } from "../invertory/playerInventory.js"
 import { healthBar, healthBarAnimationNone } from "../battle/animation/lifeBar.js"
 import { addPokemon, writeChat } from "../function/index.js"
-import { lifeBarEnemy, lifeBarPokemonPlayer, textChatBattle, menuBattle,displayBLOCK,displayNONE,displayFLEX,DEFEAT, VOIDTEXT } from "../utils/index.js"
+import { lifeBarEnemy, lifeBarPokemonPlayer, textChatBattle, menuBattle, displayBLOCK, displayNONE, displayFLEX, DEFEAT, VOIDTEXT } from "../utils/index.js"
 import { stopButtons, initButtons } from "./index.js"
-import { inventory } from "../invertory/index.js"
+import { bagObject, inventory } from "../invertory/index.js"
 
 let damage = 20
 let combatStatePlayer = false
@@ -48,77 +48,81 @@ const atack = () => {
     textMenuBattle()
 }
 
+const capture = async() => {
 
-const capture = () => {
-    const containerBall = document.getElementById('pokeballBatlleContainer')
-    const ball = document.getElementById('pokeballBatlle')
-    containerBall.style.display = displayBLOCK
-    stopButtons()
-    addPokemon()
+    let pokeball = await bagObject.pokeball()
 
-    containerBall.animate([
-        { // from
-            left: '18%',
-            bottom: '23%'
-        },
-        { // to
-            left: '78%',
-            bottom: '71%'
-        }
-    ], {
-        duration: 800,
-        fill: "forwards"
-    })
-
-    ball.animate([
-        { transform: "rotate(360deg)" },
-    ], {
-        duration: 240,
-        iterations: Infinity,
-        easing: "linear"
-    })
-
-    setTimeout(() => {
-        containerBall.style.display = displayNONE
+    if (pokeball) {
+        const containerBall = document.getElementById('pokeballBatlleContainer')
+        const ball = document.getElementById('pokeballBatlle')
         containerBall.style.display = displayBLOCK
-
-        changeCaptureState(true)
-
+        stopButtons()
+        addPokemon()
 
         containerBall.animate([
             { // from
-                left: '78%',
-                bottom: '71%'
+                left: '18%',
+                bottom: '23%'
             },
             { // to
                 left: '78%',
-                bottom: '62%'
+                bottom: '71%'
             }
         ], {
-            duration: 300,
+            duration: 800,
             fill: "forwards"
         })
 
-        ball.animate(
-            arrayCapture,
-            {
-                duration: 3500,
+        ball.animate([
+            { transform: "rotate(360deg)" },
+        ], {
+            duration: 240,
+            iterations: Infinity,
+            easing: "linear"
+        })
+
+        setTimeout(() => {
+            containerBall.style.display = displayNONE
+            containerBall.style.display = displayBLOCK
+
+            changeCaptureState(true)
+
+
+            containerBall.animate([
+                { // from
+                    left: '78%',
+                    bottom: '71%'
+                },
+                { // to
+                    left: '78%',
+                    bottom: '62%'
+                }
+            ], {
+                duration: 300,
                 fill: "forwards"
             })
 
-        setTimeout(() => {
-            textChatBattle.style.zIndex = '9'
-            let nameEnemy = enemyPokemon.getName().toUpperCase()
-            let text = `${nameEnemy} ha sido capturado!!!,#
+            ball.animate(
+                arrayCapture,
+                {
+                    duration: 3500,
+                    fill: "forwards"
+                })
+
+            setTimeout(() => {
+                textChatBattle.style.zIndex = '9'
+                let nameEnemy = enemyPokemon.getName().toUpperCase()
+                let text = `${nameEnemy} ha sido capturado!!!,#
                 Lo podras encontrar en tu pc.#                         
                 Haz click para finalizar el combate...`
-            writeChat(textChatBattle, text)
-            textChatBattle.addEventListener('click', finishCapture, true)
-        }, 3500);
+                writeChat(textChatBattle, text)
+                textChatBattle.addEventListener('click', finishCapture, true)
+            }, 3500);
 
 
-    }, 900);
+        }, 900);
 
+    }
 }
 
 const finishCapture = () => {
@@ -141,7 +145,6 @@ const back = () => {
     backBtn.removeEventListener('click', back, true)
     invetory.style.display = displayNONE
 }
-
 
 const skipBattle = () => {
     changeCombatState(false)
@@ -166,12 +169,14 @@ const moveEnemy = () => {
             writeChat(textChatBattle, text)
             textChatBattle.addEventListener('click', finishBattle, true)
         }
-    }, timeAwait);
+    }, timeAwait)
 
 }
 
 const finishBattle = () => {
     textChatBattle.removeEventListener('click', finishBattle, true)
+    bagObject.winGold(600)
+    
     skipBattle()
 }
 

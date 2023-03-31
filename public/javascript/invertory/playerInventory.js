@@ -1,6 +1,6 @@
 import { PokemonObject } from "../class/index.js";
 import { getUser, getPc } from "../function/index.js";
-import { LOCALHOST, PCURL,MAXTEAM } from "../utils/index.js";
+import { LOCALHOST, PCURL, MAXTEAM } from "../utils/index.js";
 
 let teamPokemons = []
 let pcPokemon = []
@@ -19,6 +19,7 @@ const createPc = async () => {
                     one: "normal",
                     two: "flying"
                 },
+                team: true,
                 image: {
                     thumnail: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-viii/icons/18.png",
                     front: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/18.png",
@@ -46,16 +47,20 @@ const createPc = async () => {
 const getInventory = async () => {
     teamPokemons = []
     let pc = await getPc()
-    pc.error ? createPc() : actTeamAndPc(pc)
+    pc.error ? createPc() : actTeamAndPc(pc.pokemons)
 }
 
-const actTeamAndPc = pc => {
-    pc.pokemons.forEach((pokemon, index) => {
-        index < MAXTEAM
+const actTeamAndPc = pokemons => {
+    teamPokemons = []
+    pokemons.forEach((pokemon, index) => {
+        pokemon.team
             ? teamPokemons.push(new PokemonObject(pokemon))
             : pcPokemon.push(pokemon)
     })
-    pokemonInicial = teamPokemons[0]    
+    let vivo = false
+    
+    pokemonInicial = teamPokemons[0]
+    return true
 }
 
 const stateHealthPokemonInventory = () => {
@@ -70,8 +75,8 @@ const changePositionArray = (id) => {
     pokemonInicial = teamPokemons[0]
 }
 
-const removePokemonTeam = positon =>{
-    
+const removePokemonTeam = positon => {
+
 }
 
-export { pokemonInicial, stateHealthPokemonInventory, teamPokemons, changePositionArray, getInventory }
+export { pokemonInicial, stateHealthPokemonInventory, teamPokemons, changePositionArray, getInventory,actTeamAndPc }

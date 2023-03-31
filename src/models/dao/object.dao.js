@@ -24,6 +24,11 @@ class DaoMongoDb extends ContenedorMongoDB {
                     required: true,
                     max: 1000
                 },
+                price: {
+                    type: Number,
+                    required: true,
+                    max: 1000
+                },
                 image: {
                     thumnail: {
                         type: String,

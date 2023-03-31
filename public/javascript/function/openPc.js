@@ -1,12 +1,15 @@
-import { teamPokemons } from "../invertory/playerInventory.js"
-import { displayFLEX, displayNONE, pcBackBtn, pcHtml, slotPc, slotPcTeam } from "../utils/index.js"
+import { removeInteraction } from "../interaction/removeInteraction.js"
+import { teamPokemons, actTeamAndPc } from "../invertory/playerInventory.js"
+import { displayFLEX, displayNONE, LOCALHOST, MAXTEAM, MINTEAM, pcBackBtn, pcHtml, slotPc, slotPcTeam } from "../utils/index.js"
 import { getPc } from "./getPc.js"
 
 let stateOpenPc = false
 const changeOpenPc = state => stateOpenPc = state
+let btnArray = []
 
 const openPc = () => {
     changeOpenPc(true)
+    removeInteraction()
     pcInit()
     pcHtml.style.display = displayFLEX
     pcBackBtn.addEventListener('click', closePc, true)
@@ -19,42 +22,45 @@ const closePc = () => {
 }
 
 const pcInit = async () => {
+    slotPcTeam.innerHTML = ''
+    slotPc.innerHTML = ''
     let pc = await getPc()
-    setTimeout(() => {
+    let act = await actTeamAndPc(pc.pokemons)
+    if (pc.pokemons) {
 
         pc.pokemons.forEach((pokemon, index) => {
-            let inTeam = false
-            teamPokemons.forEach(pokemonTeam => pokemon._id == pokemonTeam.getObjectId() ? inTeam = true : '')
             let { name, image, _id } = pokemon
-
-            if (inTeam) {
+            if (pokemon.team) {
                 // imprimo html de mi equipo
                 let htmlSlot = `<div class="pc__container__slots__left__ind" id="${_id}">
-                <div class="pc__container__slots__left__ind__left" id="slot-left-${_id}">
-                <div class="pc__container__slots__left__ind__left__img" id="slot-divimg-${_id}">
-                <img src="${image.thumnail}" alt="thumnail" id="slot-img-${_id}">
-                </div>
-                <span id="slot-name-${_id}">${name}</span>
-                </div>
-                </div>`
+                    <div class="pc__container__slots__left__ind__left" id="slot-left-${_id}">
+                    <div class="pc__container__slots__left__ind__left__img" id="slot-divimg-${_id}">
+                    <img src="${image.thumnail}" alt="thumnail" id="slot-img-${_id}">
+                    </div>
+                    <span id="slot-name-${_id}">${name}</span>
+                    </div>
+                    </div>`
                 slotPcTeam.innerHTML += htmlSlot
+
             } else {
-                // imprimo html de mi pc
+
                 let htmlSlot = `<div class="pc__container__slots__left__ind" id="${_id}">
-                <div class="pc__container__slots__left__ind__left" id="slot-left-${_id}">
-                <div class="pc__container__slots__left__ind__left__img" id="slot-divimg-${_id}">
-                <img src="${image.thumnail}" alt="thumnail" id="slot-img-${_id}">
-                </div>
-                <span id="slot-name-${_id}">${name}</span>
-                </div>
-                </div>`
+                    <div class="pc__container__slots__left__ind__left" id="slot-left-${_id}">
+                    <div class="pc__container__slots__left__ind__left__img" id="slot-divimg-${_id}">
+                    <img src="${image.thumnail}" alt="thumnail" id="slot-img-${_id}">
+                    </div>
+                    <span id="slot-name-${_id}">${name}</span>
+                    </div>
+                    </div>`
 
                 slotPc.innerHTML += htmlSlot
             }
 
         })
+        btnArray = pc.pokemons
         createButtons(movePokemon, pc.pokemons, false)
-    }, 3000);
+
+    }
 }
 
 const createButtons = (typeFunction, array, remove) => {
@@ -69,22 +75,51 @@ const createButtons = (typeFunction, array, remove) => {
 }
 
 const movePokemon = async (event) => {
-    let positionArray = event.explicitOriginalTarget.id.split(displayNONE)
-    let positionArrayCount = positionArray.length
-    let number = parseInt(positionArrayCount) - 24
-    let id = displayNONE
-    for (let index = number; index < positionArrayCount; index++) {
-        const element = positionArray[index];
-        id += element
-    }
+    createButtons(movePokemon, btnArray, true)
+    let positionArray = event.explicitOriginalTarget.id.split('-')
+    let id = positionArray[positionArray.length - 1]
     let pc = await getPc()
-    createButtons(movePokemon, pc.pokemons, true)
+    let error
 
-    console.log(id)
+    pc.pokemons.forEach(pokemon => {
+        if (pokemon._id == id) {
+            if (pokemon.team === true) {
+                if (teamPokemons.length === MINTEAM) {
+                    console.error('Minimo del equipo 1 pokemon')
+                    error = true
+                    createButtons(movePokemon, btnArray, false)
+                } else {
+                    pokemon.team = false
+                }
+            } else {
+                if (teamPokemons.length === MAXTEAM) {
+                    console.error('Maximo del equipo 6 pokemones')
+                    error = true
+                    createButtons(movePokemon, btnArray, false)
+                } else {
+                    pokemon.team = true
+                }
+            }
+        }
+    })
 
-    // si el id esta en el team enviar a la pc
-    // sino enviar a al id 
-    // condicion si el team es 6 no mandar nada  
+    if (!error) {
+        const url = `${LOCALHOST}api/pc/${pc._id}`
+        const response = await fetch(url, {
+            method: "PUT",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "same-origin",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            redirect: "follow",
+            referrerPolicy: "no-referrer",
+            body: JSON.stringify(pc),
+        })
+        response.ok ? pcInit() : console.error(response)
+    }
+
 }
 
 

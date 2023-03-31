@@ -2,7 +2,7 @@ import { printDialogDefault } from "../dialog/index.js";
 import { changeNpcDetected, npcDetected } from "../function/index.js";
 import { interactionFuncion, interactionNpc } from "../interaction/index.js";
 import { changeStateInteraction, stateInteraction } from "../interaction/stateInteraction.js";
-import { closeInventory, openInventory, stateOpenInventory } from "../invertory/index.js"
+import { bagObject, closeInventory, openInventory, stateOpenInventory } from "../invertory/index.js"
 import { pcCODE } from "../map/index.js";
 import { urlFaceset } from "../utils/index.js";
 
@@ -80,6 +80,5 @@ const initSpace = () => {
         interactionFuncion()
     }
 }
-
 
 export { keys, lastKey }

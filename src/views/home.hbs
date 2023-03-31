@@ -83,6 +83,19 @@
             <div id="init-inventory-lifebar" class="inventory__active__container__health__bar"></div>
           </div>
         </div>
+        <div class="inventory__active__bag">
+          <h4>Mochila</h4>
+          <div class="inventory__active__bag__container">
+            <div>
+              <img src="../img/asset/items/pokeBall.png" alt="">
+              <span id="inventory-pokeball">x0</span>
+            </div>
+            <div>
+              <img src="../img/asset/items/masterBall.png" alt="">
+              <span id="inventory-masterball">x0</span>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="inventory__container">
 
@@ -96,7 +109,7 @@
       </div>
     </section>
     {{!-- Pc --}}
-    <section class="pc" id="pc" style="display: flex;">
+    <section class="pc" id="pc">
       <div class="pc__container" id="init-pc">
         <div class="pc__container__slots__left" id="slots-pc-team">
 
@@ -111,6 +124,50 @@
         <span id="pc-btn-back">Back</span>
       </div>
     </section>
+    {{!-- market --}}
+    <section class="market">
+      <article class="market__left">
+        <div class="market__left__mochila">
+          <img src="../img/asset/items/bag.png">
+        </div>
+        <div class="market__left__total">Total</div>
+        <div class="market__left__totalNumerico" id="total-market">$999</div>
+        <div class="market__left__container" id="item-container">
+          {{!-- <div class="market__left__container__items" id="item-market">
+            <img id="item-img" src="../img/asset/items/masterBall.png">
+            <div id="item-name">Pokeball</div>
+            <span id="item-cant">x3</span>
+          </div> --}}
+        </div>
+      </article>
+      <article class="market__right">
+        <div class="market__right__button">
+          <div class="market__right__button__yes" id="market-yes"></div>
+          <div class="market__right__button__no" id="market-no"></div>
+        </div>
+        <div class="market__right__price">$0</div>
+        <div class="market__right__product">
+          <button id="btn-back-market">back</button>
+          <div id="market-item-sell">
+            {{!-- <img src="../img/asset/items/masterBall.png">
+            <span id="item-market">Master Ball</span> --}}
+          </div>
+          <button id="btn-next-market">next</button>
+        </div>
+      </article>
+    </section>
+
+    {{!-- Config --}}
+    <article class="config">
+      <img src="../img/icon/config.png" alt="config" class="config__img">
+      <div class="config__container">
+        <img src="../img/interface/button/logout.png" alt="logout">
+        <span>Salir</span>
+        <div id="config-yes" onclick="location.href = '/logout'" class="config__container__yes"></div>
+        <div id="config-no" class="config__container__no"></div>
+      </div>
+    </article>
+
     <canvas>
     </canvas>
   </section>

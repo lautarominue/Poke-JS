@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { logger } from "../utils/log/log4jsLogger.js";
 
 dotenv.config();
-
+// test db
 mongoose.connect(process.env.MONGO_URI, (err) => {
     err
         ? logger.error("⛔ Error al conectarse a MongoDB")

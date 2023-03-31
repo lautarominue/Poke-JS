@@ -26,7 +26,7 @@ const app = express()
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 socketEvent(io)
-// test
+
 // USES
 
 app.use(cors())

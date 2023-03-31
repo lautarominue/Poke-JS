@@ -36,10 +36,14 @@ class DaoMongoDb extends ContenedorMongoDB {
             throw Error("Error en el getById")
         }
     }
-    
-    async updateBag(bag) {
+
+    async updateBag(idUser, bag) {
         try {
-            
+            let inventorys = await super.getAll();
+            const inventory = inventorys.find((n) => String(n.idUser) === String(idUser))
+            let id = inventory._id
+            let update = await super.updateById(id, bag);
+            return update
         } catch (error) {
             logger.error(error)
             throw Error('Error en el getById')

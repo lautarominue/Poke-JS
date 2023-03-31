@@ -23,6 +23,10 @@ class DaoMongoDb extends ContenedorMongoDB {
                         type: Number,
                         required: true
                     },
+                    team: {
+                        type: Boolean,
+                        required: true
+                    },
                     types: {
                         one: {
                             type: String,

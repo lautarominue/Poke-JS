@@ -1,8 +1,9 @@
 import { animateTown } from './animation/index.js'
-import { interactionFuncion } from './interaction/interactionFuncion.js'
-import { getInventory } from './invertory/index.js'
+import { getInventory, initBag } from './invertory/index.js'
+import { initConfig } from './function/index.js'
 
+initConfig()
 getInventory()
+initBag()
 animateTown()
 
-interactionFuncion()

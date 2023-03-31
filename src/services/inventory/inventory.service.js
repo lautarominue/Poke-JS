@@ -36,6 +36,16 @@ class Service {
         }
     }
 
+    async update(idUser, object) {
+        try {
+            await dao.updateBag(idUser, object)
+            return true;
+        } catch (error) {
+            console.error(error);
+            return false;
+        }
+    }
+
     /**
      * Body recibe solo un objeto el cual debe ser agregado al arrary de objetos del invtory
      * @param {object} body 
@@ -45,11 +55,10 @@ class Service {
     async updateBag(item, idUser) {
         try {
             const inventory = await dao.getInventoryUser(idUser)
-
             if (inventory) {
                 inventory.bag.push(item)
                 let id = inventory._id
-                const bag = await dao.update(id, inventory)
+                const bag = await dao.updateById(id, inventory)
                 if (bag)
                     return { state: "ok", bag: bag }
                 else
@@ -73,7 +82,7 @@ class Service {
                 let indexItem = inventory.bag.findIndex(isLargeNumber)
                 inventory.bag.splice(indexItem, 1)
                 let id = inventory._id
-                const bag = await dao.update(id, inventory)
+                const bag = await dao.updateById(id, inventory)
                 if (bag)
                     return { state: "ok", bag: bag }
                 else

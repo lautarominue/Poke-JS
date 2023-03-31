@@ -5,7 +5,6 @@ const interactionNpc = () => {
     fetch(`http://localhost:3040/api/npc/code/${id}`)
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
             printDialogDefault(data)
         })
 

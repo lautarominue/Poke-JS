@@ -8,7 +8,8 @@ import { stateInteraction } from "../interaction/stateInteraction.js"
 import { removeInteraction } from "../interaction/removeInteraction.js"
 import { randomBattle, initBattle, changeCombatState } from "../battle/index.js"
 import { BATTLEZONE, DOOR, NPC, WALL } from "../map/index.js"
-import {stateHealthPokemonInventory} from "../invertory/index.js"
+import { stateHealthPokemonInventory } from "../invertory/index.js"
+import { statePrintDeathPokemon } from "../dialog/index.js"
 
 // Ubicacion de Mapas
 const dockeTown = 'dockeTown/dockeTown'
@@ -67,13 +68,17 @@ let animate = async () => {
                     changeNpcDetected(true, boundary.symbol)
                 }
                 if (boundary.symbol == BATTLEZONE) {
-                    if (randomBattle() && stateHealthPokemonInventory()) {
-                        window.cancelAnimationFrame(animationId)
-                        transitionBlackOut()
-                        let init = await initBattle()
-                        if (init){
-                            changeCombatState(true)
-                            changeAnimation(boundary.symbol)
+                    if (randomBattle()) {
+                        if (stateHealthPokemonInventory()) {
+                            window.cancelAnimationFrame(animationId)
+                            transitionBlackOut()
+                            let init = await initBattle()
+                            if (init) {
+                                changeCombatState(true)
+                                changeAnimation(boundary.symbol)
+                            }
+                        } else {
+                            statePrintDeathPokemon()
                         }
                     }
                 }
@@ -115,7 +120,7 @@ let animate = async () => {
                         window.cancelAnimationFrame(animationId)
                         transitionBlackOut()
                         let init = await initBattle()
-                        if (init){
+                        if (init) {
                             changeCombatState(true)
                             changeAnimation(boundary.symbol)
                         }
@@ -159,7 +164,7 @@ let animate = async () => {
                         window.cancelAnimationFrame(animationId)
                         transitionBlackOut()
                         let init = await initBattle()
-                        if (init){
+                        if (init) {
                             changeCombatState(true)
                             changeAnimation(boundary.symbol)
                         }
@@ -203,7 +208,7 @@ let animate = async () => {
                         window.cancelAnimationFrame(animationId)
                         transitionBlackOut()
                         let init = await initBattle()
-                        if (init){
+                        if (init) {
                             changeCombatState(true)
                             changeAnimation(boundary.symbol)
                         }

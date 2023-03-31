@@ -2,6 +2,50 @@ body {
     background-color: black;
 }
 
+
+.config{
+    &__img{
+        display: block;
+        cursor: pointer;
+        position: absolute;
+        right: 25;
+        top: 25;
+    }
+    &__container{
+        display: none;
+        & img{
+            position: absolute;
+            top: 30%;
+            left: 25%;
+        }
+        & span {
+            position: absolute;
+            text-align: center;
+            font-size: 1.5rem;
+            width: 203px;
+            height: 40px;
+            left: 552;
+            top: 289;
+        }
+        &__yes{
+            position: absolute;
+            width: 160px;
+            height: 97px;
+            left: 765;
+            top: 380;
+            cursor: pointer;
+        }   
+        &__no{
+            cursor: pointer;
+            position: absolute;
+            width: 160px;
+            height: 97px;
+            left: 370;
+            top: 380;
+        }
+    }
+}
+
 .body__game{
     display: flex;
     justify-content: center;

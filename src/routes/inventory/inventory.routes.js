@@ -6,10 +6,11 @@ router.get('/', inventoryController.getInventoryUser)
 
 router.post("/", inventoryController.create)
 
-router.put("/add/:item", inventoryController.updateBagAdd);
+router.put("/", inventoryController.update)
 
-router.put("/remove/:item", inventoryController.updateBagRemove);
+router.put("/add/:item", inventoryController.updateBagAdd)
 
+router.put("/remove/:item", inventoryController.updateBagRemove)
 
 
 export { router as inventoryRouter }
