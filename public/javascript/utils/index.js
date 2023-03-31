@@ -4,7 +4,7 @@ const URLMAPS = '../img/maps/'
 const urlFaceset = '../img/asset/faceset/'
 const URLPLAYER = '../img/asset/player/'
 // Api rest
-const LOCALHOST = 'http://localhost:3040/'
+const LOCALHOST = 'https://poke-js-production.up.railway.app/'
 const NPCURL = 'api/npc/'
 const USERURL = 'user/'
 const INVENTORYURL = 'api/inventory/'
